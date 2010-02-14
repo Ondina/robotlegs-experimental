@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/halo"
+		 x="0"
+		 y="0"
+		 width="380"
+		 height="240"
+		 title="ResultsOneView">
+	<fx:Script>
+		<![CDATA[
+			import org.robotlegs.demos.rlpopup.events.SearchEventOne;
+			import org.robotlegs.demos.rlpopup.events.PopUpEvent;
+
+			protected function resultLabel_clickHandler(event:MouseEvent):void
+			{
+				var selectedRes:String=event.currentTarget.text + " (selected from ResultsOneView)";
+				this.parent.dispatchEvent(new PopUpEvent(PopUpEvent.CLOSE_POPUP));
+				this.parent.dispatchEvent(new SearchEventOne(SearchEventOne.SELECTED_RESULT, selectedRes));
+			}
+		]]>
+	</fx:Script>
+
+	<mx:Label id="resultLabel1"
+			  text="results 1"
+			  horizontalCenter="0"
+			  verticalCenter="0"
+			  click="resultLabel_clickHandler(event)"
+			  color="#D34141"/>
+	<mx:Label y="177"
+			  text="click the result text above to simulate a selectedItem"
+			  horizontalCenter="0"/>
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+</s:Panel>

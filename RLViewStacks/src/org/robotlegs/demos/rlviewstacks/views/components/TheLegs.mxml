@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/halo"
+		 xmlns:ai="http://ns.adobe.com/ai/2008"
+		 xmlns:d="http://ns.adobe.com/fxg/2008/dt"
+		 xmlns:fc="http://ns.adobe.com/thermo/2009"
+		 width="280"
+		 creationComplete="initLegs()">
+	<s:transitions>
+		<s:Transition fromState="Page2"
+					  toState="Page1"
+					  autoReverse="true">
+			<s:Parallel>
+				<s:Parallel target="{leftLeg}">
+					<s:Rotate autoCenterTransform="true"
+							  duration="100"/>
+					<s:Move autoCenterTransform="true"
+							duration="50"/>
+				</s:Parallel>
+				<s:Parallel target="{rightLeg}">
+					<s:Resize duration="200"/>
+					<s:Move autoCenterTransform="true"
+							duration="0"/>
+				</s:Parallel>
+			</s:Parallel>
+		</s:Transition>
+	</s:transitions>
+	<fx:Script>
+		<![CDATA[
+		import org.robotlegs.demos.rlviewstacks.events.LegsEvent;
+		import org.robotlegs.demos.rlviewstacks.events.ApplicationEvent;
+		import mx.events.FlexEvent;
+		private function initLegs():void{
+			this.addEventListener(MouseEvent.MOUSE_WHEEL,legs_Wheel);
+		}
+		protected function rightLeg_click():void
+		{
+			currentState='Page1';
+		}
+		
+		protected function rightLeg_rollOver():void
+		{
+			currentState='Page2';
+			dispatchEvent(new LegsEvent(LegsEvent.LABEL_LEGS, "right leg"));
+		}
+		
+		protected function rightLeg_rollOut():void
+		{
+			currentState='Page1';
+			dispatchEvent(new LegsEvent(LegsEvent.LABEL_LEGS, "legs"));
+			
+		}
+		protected function leftLeg_rollOut():void
+		{
+			currentState='Page1';
+			dispatchEvent(new LegsEvent(LegsEvent.LABEL_LEGS, "legs"));
+		}
+		
+		protected function leftLeg_rollOver():void
+		{
+			dispatchEvent(new LegsEvent(LegsEvent.LABEL_LEGS, "left leg->click it"));
+		}
+		
+		protected function leftLeg_click():void
+		{
+			dispatchEvent(new LegsEvent(LegsEvent.SHOW_LOGIN, "show login"));
+		}
+		protected function legs_Wheel(event:MouseEvent):void
+		{
+			
+			if(event.delta>0){
+				currentState='Page3';
+				dispatchEvent(new LegsEvent(LegsEvent.LABEL_LEGS, event.delta+" ouch"));
+			}else{
+				currentState='Page1';
+				dispatchEvent(new LegsEvent(LegsEvent.LABEL_LEGS, "Click the left leg already!"));
+			}
+		}
+
+	]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="Page1"/>
+		<s:State name="Page2"/>
+		<s:State name="Page3"/>
+	</s:states>
+	<fx:DesignLayer d:id="2"
+					d:userLabel="Layer 1">
+		<s:Button x="7"
+				  y="17"
+				  skinClass="org.robotlegs.demos.rlviewstacks.views.components.skins.RightLeg"
+				  id="rightLeg"
+				  rollOver="rightLeg_rollOver()"
+				  rollOut="rightLeg_rollOut()"
+				  toolTip="Nice socks, don't you think?"
+				  y.Page2="21"
+				  height.Page2="133"
+				  width.Page2="68"
+				  x.Page1="52"
+				  y.Page1="17"
+				  x.Page2="52"
+				  height.Page3="133"
+				  width.Page3="68"
+				  rotation.Page3="40"
+				  x.Page3="78"
+				  y.Page3="21"/>
+		<s:Button x="98"
+				  y="12"
+				  skinClass="org.robotlegs.demos.rlviewstacks.views.components.skins.LeftLeg"
+				  id="leftLeg"
+				  toolTip="It needs sock suspenders."
+				  rollOver="leftLeg_rollOver()"
+				  rollOut="leftLeg_rollOut()"
+				  click="leftLeg_click()"
+				  rotation.Page2="-38.862"
+				  y.Page2="40.6"
+				  x.Page2="98"
+				  x.Page1="143"
+				  y.Page1="12"
+				  rotation.Page3="-38.862"
+				  x.Page3="98"
+				  y.Page3="40.6"/>
+	</fx:DesignLayer>
+	<mx:Label y="175"
+			  id="legsLabel"
+			  y.Page1="156"
+			  x.Page2="100"
+			  y.Page2="156"
+			  x.Page1="100"
+			  x.Page3="100"
+			  y.Page3="156"/>
+	<mx:Label x="79"
+			  y="223"
+			  text="rOBot LEgs"
+			  x.Page1="79"
+			  y.Page1="186"
+			  y.Page2="186"
+			  y.Page3="186"/>
+	<fx:Private>
+	</fx:Private>
+</s:Group>

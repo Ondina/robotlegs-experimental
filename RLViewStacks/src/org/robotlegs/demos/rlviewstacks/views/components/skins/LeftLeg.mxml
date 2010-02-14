@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:ai="http://ns.adobe.com/ai/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<fx:Metadata>[HostComponent("spark.components.Button")]</fx:Metadata>
+	<s:Path winding="nonZero" ai:knockout="0" d:userLabel="left_leg" data="M 2.86 14.819 C 2.86 14.819 16.86 38.819 16.86 64.819 C 16.86 90.819 9.86 121.819 9.86 121.819 C 9.86 121.819 17.855 139.808 34.847 141.818 C 42.256 142.693 54.125 138.853 55.821 130.358 C 57.791 120.491 41.756 116.623 42.86 109.819 C 42.86 109.819 49.86 66.819 45.86 40.819 C 41.86 14.819 35.86 2.819 35.86 2.819 C 35.86 2.819 10.86 24.819 2.86 14.819 Z" id="path1" x="0.15" y="0.2">
+		<s:fill>
+			<s:SolidColor color="0xffffff"/>
+		</s:fill>
+		<s:stroke>
+			<s:SolidColorStroke color="0x221e1f" weight="6" miterLimit="4"/>
+		</s:stroke>
+	</s:Path>
+</s:Skin>

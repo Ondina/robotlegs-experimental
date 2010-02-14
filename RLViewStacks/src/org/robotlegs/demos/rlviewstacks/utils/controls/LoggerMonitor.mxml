@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/halo"
+		 creationComplete="initApp()"
+		 width="406">
+	<fx:Script>
+		<![CDATA[
+		import mx.events.EffectEvent;
+		
+		[Bindable]
+		private var animationDistance:uint;
+		private var componentCollapsed:Boolean = true;
+		private var interval:int = 200;
+		[Bindable]
+		public var loggText:String="";
+		
+		private function initApp():void{
+			animationDistance = pan.width;
+		}  
+		protected function toggleAnimation(event:Event):void{
+			if(componentCollapsed){
+				moveLeft.end();
+				moveLeft.play();
+			}else{
+				moveRight.end();
+				moveRight.play();
+			}
+		}	 
+		protected function moveLeft_effectEndHandler(event:EffectEvent):void
+		{
+			componentCollapsed = false;
+		}
+		protected function moveRight_effectEndHandler(event:EffectEvent):void
+		{
+			componentCollapsed = true;
+		}
+
+	]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:Sine id="sineEasing"
+				easeInFraction="0.3"/>
+		<s:Power id="powerEasing"
+				 exponent="4"/>
+		<s:Move id="moveRight"
+				target="{pan}"
+				xBy="{animationDistance}"
+				duration="800"
+				easer="{sineEasing}"
+				effectEnd="moveRight_effectEndHandler(event)"/>
+		<s:Move id="moveLeft"
+				target="{pan}"
+				xBy="{-animationDistance}"
+				duration="800"
+				easer="{powerEasing}"
+				effectEnd="moveLeft_effectEndHandler(event)"/>
+		<mx:NumberFormatter id="numberFormatter"
+							precision="-1"
+							useThousandsSeparator="true"
+							useNegativeSign="true"/>
+	</fx:Declarations>
+	<s:Panel id="pan"
+			 y="0"
+			 width="380"
+			 height="120"
+			 title="Logger Monitor"
+			 x="{pan.width+toggler.height}">
+		<s:TextArea id="messagesText"
+					text="{loggText}"
+					width="361"
+					height="86"
+					x="10"
+					y="0"
+					fontSize="11"/>
+		<s:Button id="toggler"
+				  direction="ltr"
+				  rotation="-90"
+				  label="logger"
+				  click="toggleAnimation(event);"
+				  height="24"
+				  toolTip="Logger Monitor"
+				  left="-17"
+				  width="120"
+				  y="88"/>
+	</s:Panel>
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+</s:Group>

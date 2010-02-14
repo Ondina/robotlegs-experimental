@@ -1,0 +1,26 @@
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/halo"
+		 width="400"
+		 height="300"
+		 title="Module One">
+	<fx:Script>
+		<![CDATA[
+			import org.robotlegs.examples.multiContextualDemo.events.ModulesEvent;
+
+			private function unloadThisModule():void
+			{
+				dispatchEvent(new ModulesEvent(ModulesEvent.SWITCH_CONTEXT, "Home"));
+			}
+		]]>
+	</fx:Script>
+	<s:Label text="Module One"
+			 id="moduleInfo"
+			 horizontalCenter="0"
+			 verticalCenter="0"
+			 color="#7790E2"/>
+	<s:Button x="310"
+			  y="233"
+			  label="unload me"
+			  click="unloadThisModule()"/>
+</s:Panel>

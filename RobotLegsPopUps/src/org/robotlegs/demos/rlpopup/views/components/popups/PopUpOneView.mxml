@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/halo"
+				xmlns:view="org.robotlegs.demos.rlpopup.views.components.popups.*"
+				width="500"
+				height="340"
+				title="TitleWindow created in Mediator [ PopUpOneView ]"
+				layout="absolute"
+				creationComplete="initApp()">
+	<fx:Script>
+		<![CDATA[
+			import org.robotlegs.demos.rlpopup.events.ApplicationEvent;
+			import org.robotlegs.demos.rlpopup.events.PopUpEvent;
+			import mx.managers.PopUpManager;
+
+			protected function initApp():void
+			{
+				//the CallerOneMediator will create a Mediator for this View after its creationComplete
+				this.parent.dispatchEvent(new ApplicationEvent(ApplicationEvent.MAP_MEDIATOR, "PopUpOneView"));
+			}
+
+			public function closePopHandler():void
+			{
+				//the CallerOneMediator will remove the mediator for this View
+				dispatchEvent(new PopUpEvent(PopUpEvent.CLOSE_POPUP));
+				//removing the PopUp
+				PopUpManager.removePopUp(this);
+			}
+
+			public function writeResultLabel(searchResult:String):void
+			{
+				//remote data ->ResultsView
+				resultsView1.resultLabel1.text=searchResult;
+			}
+		]]>
+	</fx:Script>
+	<view:ResultsOneView id="resultsView1"
+						 x="51"
+						 y="4"/>
+	<s:Button label="close"
+			  click="closePopHandler();"
+			  x="374"
+			  y="271"/>
+</mx:TitleWindow>

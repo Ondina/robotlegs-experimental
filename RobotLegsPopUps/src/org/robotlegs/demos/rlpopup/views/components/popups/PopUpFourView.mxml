@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/halo"
+				xmlns:view="org.robotlegs.demos.rlpopup.views.components.popups.*"
+				width="500"
+				height="346"
+				title="Title Window created through Proxy [PopUpFourView]"
+				layout="absolute">
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			import org.robotlegs.demos.rlpopup.events.PopUpEvent;
+			import org.robotlegs.demos.rlpopup.events.SearchEventFour;
+
+			[Bindable]
+			public var popupData:String;
+
+			public function closePopHandler():void
+			{
+				//the CallerTwoMediator will remove the mediator for this View
+				dispatchEvent(new PopUpEvent(PopUpEvent.CLOSE_POPUP));
+				PopUpManager.removePopUp(this);
+			}
+
+			public function showResults(searchResult:String):void
+			{
+				//remote data ->resultLabel4
+				resultLabel4.text=searchResult;
+			}
+
+			protected function resultLabel_clickHandler(event:MouseEvent):void
+			{
+				var selectedRes:String=event.currentTarget.text + " (selected from PopUpFourView)";
+				dispatchEvent(new SearchEventFour(SearchEventFour.SELECTED_RESULT_FOUR, selectedRes));
+				PopUpManager.removePopUp(this);
+			}
+		]]>
+	</fx:Script>
+	<mx:Label id="resultLabel4"
+			  text="{popupData}"
+			  horizontalCenter="0"
+			  verticalCenter="0"
+			  click="resultLabel_clickHandler(event)"
+			  color="#417CD3"/>
+	<s:Button label="close"
+			  click="closePopHandler();"
+			  x="416"
+			  y="270"/>
+</mx:TitleWindow>

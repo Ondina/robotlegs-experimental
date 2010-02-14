@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/halo"
+				xmlns:view="org.robotlegs.demos.rlpopup.views.components.popups.*"
+				width="500"
+				height="346"
+				title="Title Window  [PopUpFiveView]"
+				layout="absolute">
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			import org.robotlegs.demos.rlpopup.events.PopUpEvent;
+			import org.robotlegs.demos.rlpopup.events.SearchEventFive;
+
+			[Bindable]
+			public var popupData:String;
+
+			public function closePopHandler():void
+			{
+				//the CallerFiveMediator will remove the mediator for this View
+				dispatchEvent(new PopUpEvent(PopUpEvent.CLOSE_POPUP));
+				PopUpManager.removePopUp(this);
+			}
+
+			public function showResults(searchResult:String):void
+			{
+				//remote data ->resultLabel5
+				resultLabel5.text=searchResult;
+			}
+
+			protected function resultLabel_clickHandler(event:MouseEvent):void
+			{
+				var selectedRes:String=event.currentTarget.text + " (selected from PopUpFiveView)";
+				dispatchEvent(new SearchEventFive(SearchEventFive.SELECTED_RESULT_FIVE, selectedRes));
+				PopUpManager.removePopUp(this);
+			}
+
+			protected function nextPage_clickHandler(event:MouseEvent):void
+			{
+				popupData="next page";
+			}
+		]]>
+	</fx:Script>
+	<mx:Label id="resultLabel5"
+			  text="{popupData}"
+			  horizontalCenter="0"
+			  verticalCenter="0"
+			  click="resultLabel_clickHandler(event)"
+			  color="#417CD3"/>
+	<s:Button label="close"
+			  click="closePopHandler();"
+			  x="416"
+			  y="270"/>
+	<s:Button x="10"
+			  y="270"
+			  label="next"
+			  id="nextPage"
+			  click="nextPage_clickHandler(event)"/>
+</mx:TitleWindow>

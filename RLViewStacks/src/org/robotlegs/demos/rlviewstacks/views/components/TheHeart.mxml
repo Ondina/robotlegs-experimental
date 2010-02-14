@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:ai="http://ns.adobe.com/ai/2008"
+		 xmlns:d="http://ns.adobe.com/fxg/2008/dt"
+		 xmlns:fc="http://ns.adobe.com/thermo/2009"
+		 xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 creationComplete="creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+		import mx.events.FlexEvent;
+		import mx.controls.Alert;
+		import mx.events.EffectEvent;
+		[Bindable]
+		private var animationDistance:uint=20;
+		public function heartScale():void
+		{
+			//moveEffect.play();
+			//rotateEffect.play();
+			scaleDecrease.end(); 
+			scaleDecrease.play();
+			moveEffect.play();
+		}
+		
+		protected function creationCompleteHandler(event:FlexEvent):void
+		{
+			scaleDecrease.end(); 
+			scaleDecrease.play();
+			rotateEffect.play();
+		}
+	]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:Animate id="scaleIncrease"
+				   target="{heart}">
+			<s:SimpleMotionPath property="scaleX"
+								valueFrom=".8"
+								valueTo=".9"/>
+			<s:SimpleMotionPath property="scaleY"
+								valueFrom="1.0"
+								valueTo="1.8"/>
+		</s:Animate>
+		<s:Animate id="scaleDecrease"
+				   target="{heart}">
+			<s:SimpleMotionPath property="scaleX"
+								valueFrom="1.0"
+								valueTo="0.8"/>
+			<s:SimpleMotionPath property="scaleY"
+								valueFrom="1.0"
+								valueTo="0.8"/>
+		</s:Animate>
+		<s:Move3D id="moveEffect"
+				  target="{heart}"
+				  xBy="50"
+				  zBy="100"
+				  repeatCount="4"
+				  repeatBehavior="reverse"/>
+		<s:Rotate3D id="rotateEffect"
+					duration="800"
+					target="{heart}"
+					angleYFrom="0"
+					angleYTo="360"
+					repeatCount="1"
+					repeatBehavior="reverse"/>
+	</fx:Declarations>
+	<fx:DesignLayer d:id="2"
+					d:userLabel="Layer 1">
+		<s:Group id="heart"
+				 mouseDown="heartScale()">
+			<s:Path alpha="0.35"
+					winding="nonZero"
+					ai:knockout="0"
+					data="M 21.974 3.484 C 18.801 9.713 7.701 11.122 0.497 8.204 C 0.74 0.803 17.405 -2.303 21.974 3.484 Z"
+					x="29"
+					y="278">
+				<s:fill>
+					<s:SolidColor color="0xc94524"/>
+				</s:fill>
+				<s:stroke>
+					<s:SolidColorStroke color="0xccc7b6"
+										caps="none"
+										weight="1"
+										joints="miter"
+										miterLimit="4"/>
+				</s:stroke>
+			</s:Path>
+			<s:Path alpha="0.35"
+					winding="nonZero"
+					ai:knockout="0"
+					data="M 23.948 3.442 C 22.076 11.881 7.403 13.573 0.52 9.104 C 1.037 0.827 18.111 -2.353 23.948 3.442 Z"
+					x="28"
+					y="277">
+				<s:fill>
+					<s:SolidColor color="0xc94524"/>
+				</s:fill>
+				<s:stroke>
+					<s:SolidColorStroke color="0xccc7b6"
+										caps="none"
+										weight="1"
+										joints="miter"
+										miterLimit="4"/>
+				</s:stroke>
+			</s:Path>
+			<s:Path alpha="0.35"
+					winding="nonZero"
+					ai:knockout="0"
+					data="M 18.047 0.65 C 16.718 8.174 9.27 9.788 0.475 10.09 C 1.754 2.52 8.148 -0.114 18.047 0.65 Z"
+					x="11"
+					y="123">
+				<s:fill>
+					<s:SolidColor color="0xc94524"/>
+				</s:fill>
+				<s:stroke>
+					<s:SolidColorStroke color="0xccc7b6"
+										caps="none"
+										weight="1"
+										joints="miter"
+										miterLimit="4"/>
+				</s:stroke>
+			</s:Path>
+			<s:Path alpha="0.35"
+					winding="nonZero"
+					ai:knockout="0"
+					data="M 20.023 1.5 C 18.92 9.354 8.815 13.167 0.499 10.94 C 1.514 3.002 10.778 -1.624 20.023 1.5 Z"
+					x="10"
+					y="122">
+				<s:fill>
+					<s:SolidColor color="0xc94524"/>
+				</s:fill>
+				<s:stroke>
+					<s:SolidColorStroke color="0xccc7b6"
+										caps="none"
+										weight="1"
+										joints="miter"
+										miterLimit="4"/>
+				</s:stroke>
+			</s:Path>
+			<s:Path alpha="0.55"
+					winding="nonZero"
+					ai:knockout="0"
+					data="M 16.129 0.71 C 14 4.636 11.854 8.526 12.226 14.869 C 7.276 12.736 2.854 10.083 0.51 5.43 C 5.733 3.873 8.155 -0.394 16.129 0.71 Z"
+					x="80"
+					y="36">
+				<s:fill>
+					<s:SolidColor color="#e2891b"/>
+				</s:fill>
+				<s:stroke>
+					<s:SolidColorStroke color="0xccc7b6"
+										caps="none"
+										weight="1"
+										joints="miter"
+										miterLimit="4"/>
+				</s:stroke>
+			</s:Path>
+			<s:Path alpha="0.55"
+					winding="nonZero"
+					ai:knockout="0"
+					data="M 26.101 6.139 C 27.681 12.292 16.876 17.739 12.805 23.252 C 12.589 23.535 12.404 23.828 12.229 24.111 C 12.14 24.101 12.063 24.092 11.984 24.083 C 6.625 23.374 4.957 19.089 0.514 17.503 C 4.33 15.116 1.686 11.217 3.444 8.064 C 6.049 6.715 8.949 11.783 12.229 12.784 C 14.22 11.878 16.094 10.858 18.087 9.952 C 17.511 7.998 19.296 3.749 17.109 3.346 C 17.372 1.4 20.751 2.458 21.015 0.514 C 22.381 1.371 23.444 2.222 24.236 3.053 C 25.241 4.099 25.836 5.119 26.101 6.13"
+					x="42"
+					y="51">
+				<s:fill>
+					<s:SolidColor color="#e2891b"/>
+				</s:fill>
+				<s:stroke>
+					<s:SolidColorStroke color="0xccc7b6"
+										caps="none"
+										weight="1"
+										joints="miter"
+										miterLimit="4"/>
+				</s:stroke>
+			</s:Path>
+			<s:Path alpha="0.55"
+					winding="nonZero"
+					ai:knockout="0"
+					data="M 37.214 5.213 C 34.411 14.143 31.054 22.544 31.356 34.475 C 30.879 38.723 27.462 31.416 24.572 32.673 C 24.22 32.814 23.878 33.097 23.547 33.532 C 26.007 35.239 29.922 35.542 30.38 39.195 C 26.798 48.916 14.624 54.401 1.092 51.467 C -2.53 37.516 12.251 34.211 24.523 32.587 C 24.689 30.54 21.057 32.162 19.642 31.642 C 21.205 20.259 23.975 10.037 27.452 0.494 C 31.455 1.345 34.226 3.383 37.214 5.213 Z"
+					x="6"
+					y="85">
+				<s:fill>
+					<s:SolidColor color="#e2891b"/>
+				</s:fill>
+				<s:stroke>
+					<s:SolidColorStroke color="0xccc7b6"
+										caps="none"
+										weight="1"
+										joints="miter"
+										miterLimit="4"/>
+				</s:stroke>
+			</s:Path>
+			<s:Group y="126"
+					 d:id="3"
+					 x="5">
+				<s:Path alpha="0.77"
+						winding="nonZero"
+						ai:knockout="0"
+						data="M 25.095 114.56 C -2.738 107.368 -5.732 53.142 10.003 31.628 C 6.694 26.014 4.156 19.66 3.169 11.806 C 16.026 14.883 27.175 8.757 31.48 0.479 C 32.126 1.858 32.622 3.133 33.042 4.331 C 34.213 7.785 34.651 10.608 35.668 13.402 C 36.263 15.034 37.054 16.669 38.314 18.414 C 46.699 30.033 65.295 31.488 67.601 45.788 C 70.969 66.657 47.481 71.566 43.194 90.152 C 36.683 94.242 31.022 99.146 26.598 105.252 C 25.438 107.323 25.993 109.013 26.238 110.775 C 26.404 111.994 26.423 113.252 25.623 114.695 C 25.447 114.654 25.272 114.609 25.095 114.56 Z">
+					<s:fill>
+						<s:LinearGradient x="0.643178"
+										  y="48.4263"
+										  scaleX="67.4288"
+										  rotation="19.5052">
+							<s:GradientEntry color="0xecebe4"
+											 ratio="0"/>
+							<s:GradientEntry color="0xdfcaad"
+											 ratio="0.536082"/>
+							<s:GradientEntry color="#e2891b"
+											 ratio="1"
+											 alpha="1.0"/>
+						</s:LinearGradient>
+					</s:fill>
+					<s:stroke>
+						<s:SolidColorStroke color="0xccc7b6"
+											caps="none"
+											weight="1"
+											joints="miter"
+											miterLimit="4"/>
+					</s:stroke>
+				</s:Path>
+			</s:Group>
+			<s:Path alpha="0.55"
+					winding="nonZero"
+					ai:knockout="0"
+					data="M 35.655 41.111 C 27.689 32.644 4.289 38.079 3.439 48.663 C 0.041 34.954 0.558 17.466 0.51 0.522 C 11.297 8.024 20.845 16.73 34.679 21.288 C 35.742 27.866 36.064 34.985 36.366 41.072 C 36.457 42.753 36.543 44.348 36.629 45.829 C 32.932 53.964 11.375 58.245 3.439 50.548 C 4.035 38.76 25.524 34.523 35.655 41.111 Z"
+					x="20"
+					y="236">
+				<s:fill>
+					<s:SolidColor color="#e2891b"/>
+				</s:fill>
+				<s:stroke>
+					<s:SolidColorStroke color="0xccc7b6"
+										caps="none"
+										weight="1"
+										joints="miter"
+										miterLimit="4"/>
+				</s:stroke>
+			</s:Path>
+			<s:Group x="100"
+					 y="112"
+					 d:id="4">
+				<s:Path alpha="0.77"
+						winding="nonZero"
+						ai:knockout="0"
+						data="M 16.066 70.442 C 13.938 68.769 11.809 66.977 10.406 64.691 C 6.879 58.999 6.489 48.691 4.546 38.26 C 3.112 30.568 -0.227 24.375 0.642 18.438 C 1.862 10.085 8.715 4.403 13.333 0.505 C 43.381 1.354 49.532 31.616 62.145 50.531 C 51.933 59.849 39.612 67.137 29.929 76.961 C 26.844 76.501 26.482 78.66 23.095 77.905 C 22.383 75.668 20.449 73.904 18.223 72.129 C 17.521 71.572 16.789 71.016 16.066 70.442 Z">
+					<s:fill>
+						<s:LinearGradient x="48.0143"
+										  y="13.3799"
+										  scaleX="61.6455"
+										  rotation="131.773">
+							<s:GradientEntry color="0xecebe4"
+											 ratio="0"/>
+							<s:GradientEntry color="0xdfcaad"
+											 ratio="0.536082"/>
+							<s:GradientEntry color="#e2891b"
+											 ratio="1"
+											 alpha="1.0"/>
+						</s:LinearGradient>
+					</s:fill>
+					<s:stroke>
+						<s:SolidColorStroke color="0xccc7b6"
+											caps="none"
+											weight="1"
+											joints="miter"
+											miterLimit="4"/>
+					</s:stroke>
+				</s:Path>
+			</s:Group>
+			<s:Group x="24"
+					 d:id="5"
+					 y="3">
+				<s:Path alpha="0.77"
+						winding="nonZero"
+						ai:knockout="0"
+						data="M 128.635 86.068 C 128.27 87.3 129.661 88.882 127.346 89.592 C 109.547 91.402 88.739 102.868 79.292 116.125 C 77.581 118.521 74.938 123.923 74.488 126.549 C 73.285 133.512 77.255 139.263 78.329 146.447 C 80.213 159.011 80.714 174.645 90.632 179.697 C 91.296 180.028 91.996 180.32 92.747 180.558 C 92.737 180.842 92.737 181.116 92.757 181.391 C 92.979 186.803 98.034 189.959 103.318 187.19 C 103.724 186.981 104.107 186.766 104.462 186.546 C 107.693 184.624 109.412 182.491 113.892 179.61 C 122.329 174.191 129.373 163.625 135.997 162.556 C 137.822 163.949 139.418 165.662 140.839 167.633 C 147 176.189 149.941 189.522 154.256 201.404 C 156.544 207.706 159.561 215.212 162.234 223.075 C 170.086 246.215 174.93 272.547 149.45 280.999 C 143.512 282.972 137.746 284.069 132.142 284.734 C 131.816 284.769 131.499 284.809 131.181 284.836 C 131.122 284.846 131.065 284.856 131.019 284.856 C 120.56 285.982 110.7 285.658 101.397 286.686 C 65.962 290.557 50.451 270.244 32.199 256.362 C 24.376 250.411 13.323 247.114 5.289 240.255 C 5.425 239.572 5.568 238.899 5.731 238.227 C 6.048 236.929 6.422 235.667 6.854 234.425 C 9.93 225.663 15.918 218.434 24.51 213.724 C 28.47 195.094 51.037 191.464 48.536 170.135 C 46.712 154.559 27.865 153.346 19.704 142.656 C 18.244 140.742 17.063 138.742 16.139 136.677 C 14.813 133.76 13.987 130.708 13.555 127.572 C 11.796 115.1 16.121 101.219 19.704 88.646 C 19.454 88.276 19.176 87.926 18.888 87.584 C 14.978 82.904 8.239 81.008 0.484 80.117 C 0.772 76.242 1.243 72.555 1.705 68.871 C 1.954 66.947 2.193 65.024 2.406 63.063 C 7.767 62.882 12.093 63.725 15.756 65.221 C 20.925 67.335 24.761 70.755 28.355 74.432 C 28.883 73.758 29.441 73.125 30.037 72.509 C 30.287 72.224 30.556 71.95 30.844 71.675 C 35.572 67.023 41.637 63.686 45.655 58.325 C 45.289 57.167 44.692 55.879 43.934 54.496 C 43.934 54.487 43.934 54.487 43.934 54.487 C 43.396 53.501 42.78 52.468 42.098 51.398 C 36.101 41.922 25.395 29.273 24.971 19.862 C 24.732 14.509 27.816 10.197 37.005 8.104 C 46.057 22.554 49.24 42.793 66.798 48.848 C 68.356 46.28 68.038 41.856 68.72 38.425 C 74.948 30.664 77.85 19.635 83.136 10.947 C 82.539 4.293 84.211 0.145 88.903 0.524 C 99.628 1.395 91.208 26.315 85.261 35.828 C 84.077 37.724 82.994 39.013 82.174 39.372 C 88.269 39.647 93.583 31.413 99.253 26.031 C 103.724 21.795 108.413 19.341 113.892 24.211 C 113.353 25.462 112.7 26.589 111.959 27.642 C 106.771 34.957 97.264 38.027 94.669 47.901 C 94.956 48.241 95.256 48.584 95.563 48.914 C 100.445 54.259 107.799 58.882 113.247 63.933 C 116.15 66.624 118.505 69.438 119.658 72.538 C 94.968 72.244 83.732 90.115 61.032 88.646 C 61.483 84.978 65.337 84.676 67.759 82.96 C 65.308 83.226 63.05 83.831 60.993 84.761 C 40.541 93.848 38.754 132.649 53.344 151.186 C 42.58 134.005 39.33 95.752 61.032 84.856 C 63.434 85.508 59.244 87.385 60.071 89.592 C 85.96 90.171 97.293 72.859 126.385 72.538 C 125.953 77.701 128.096 80.325 127.346 85.802 L 128.635 86.068 Z">
+					<s:fill>
+						<s:LinearGradient x="85.2905"
+										  y="148.876"
+										  scaleX="126.215"
+										  rotation="92.2906">
+							<s:GradientEntry color="0xecebe4"
+											 ratio="0"/>
+							<s:GradientEntry color="0xdfcaad"
+											 ratio="0.536082"/>
+							<s:GradientEntry color="#e2891b"
+											 ratio="1"
+											 alpha="1.0"/>
+						</s:LinearGradient>
+					</s:fill>
+					<s:stroke>
+						<s:SolidColorStroke color="0xccc7b6"
+											caps="none"
+											weight="1"
+											joints="miter"
+											miterLimit="4"/>
+					</s:stroke>
+				</s:Path>
+			</s:Group>
+		</s:Group>
+	</fx:DesignLayer>
+	<fx:Private>
+		<ai:PrivateElement d:ref="#2">
+			<ai:LayerOptions colorType="ThreeColor">
+				<ai:ThreeColor blue="257"
+							   green="128.502"
+							   red="79.31"/>
+			</ai:LayerOptions>
+		</ai:PrivateElement>
+		<ai:PrivateElement ai:hashcode="d910b6a063e56216ac0c0d6892573e3b"
+						   d:ref="#3">
+			<ai:Path alpha="0.77"
+					 data="M 25.095 237.313C -2.738 230.121 -5.732 175.895 10.003 154.381C 6.694 148.767 4.156 142.413 3.169 134.559C 16.026 137.636 27.175 131.51 31.48 123.232C 32.125 124.611 32.622 125.886 33.042 127.084C 34.213 130.538 34.651 133.361 35.668 136.155C 36.263 137.787 37.054 139.422 38.314 141.167C 46.699 152.786 65.295 154.241 67.601 168.541C 70.969 189.41 47.481 194.319 43.194 212.905C 36.683 216.995 31.022 221.899 26.598 228.005C 25.438 230.076 25.993 231.766 26.238 233.528C 26.404 234.747 26.423 236.005 25.623 237.448C 25.447 237.407 25.272 237.362 25.095 237.313Z"
+					 knockout="0">
+				<ai:ArtStyle/>
+				<ai:Stroke colorType="ThreeColor"
+						   miterLimit="4"
+						   weight="1">
+					<ai:ThreeColor blue="0.714"
+								   green="0.78"
+								   red="0.8"/>
+				</ai:Stroke>
+				<ai:Fill colorType="Gradient">
+					<ai:Gradient angle="-19.505"
+								 gradientType="linear"
+								 length="67.429"
+								 originX="0.643"
+								 originY="48.426">
+						<ai:GradientStops>
+							<ai:GradientStop colorType="ThreeColor"
+											 rampPoint="0">
+								<ai:ThreeColor blue="0.894"
+											   green="0.922"
+											   red="0.925"/>
+							</ai:GradientStop>
+							<ai:GradientStop colorType="ThreeColor"
+											 rampPoint="53.608">
+								<ai:ThreeColor blue="0.678"
+											   green="0.792"
+											   red="0.875"/>
+							</ai:GradientStop>
+							<ai:GradientStop colorType="ThreeColor"
+											 rampPoint="100">
+								<ai:ThreeColor blue="0.22"
+											   green="0.776"
+											   red="0.922"/>
+							</ai:GradientStop>
+						</ai:GradientStops>
+					</ai:Gradient>
+				</ai:Fill>
+			</ai:Path>
+		</ai:PrivateElement>
+		<ai:PrivateElement ai:hashcode="f29cfed02b7e95d6512f5b0dd6884ae6"
+						   d:ref="#4">
+			<ai:Path alpha="0.77"
+					 data="M 111.335 179.012C 109.207 177.338 107.078 175.546 105.675 173.261C 102.148 167.568 101.758 157.261 99.815 146.829C 98.381 139.137 95.042 132.944 95.911 127.007C 97.131 118.655 103.984 112.972 108.602 109.075C 138.65 109.923 144.801 140.185 157.414 159.101C 147.202 168.418 134.881 175.706 125.198 185.53C 122.113 185.07 121.751 187.229 118.364 186.475C 117.652 184.237 115.718 182.474 113.492 180.698C 112.79 180.142 112.058 179.585 111.335 179.012Z"
+					 knockout="0">
+				<ai:ArtStyle/>
+				<ai:Stroke colorType="ThreeColor"
+						   miterLimit="4"
+						   weight="1">
+					<ai:ThreeColor blue="0.714"
+								   green="0.78"
+								   red="0.8"/>
+				</ai:Stroke>
+				<ai:Fill colorType="Gradient">
+					<ai:Gradient angle="-131.773"
+								 gradientType="linear"
+								 length="61.646"
+								 originX="48.014"
+								 originY="13.38">
+						<ai:GradientStops>
+							<ai:GradientStop colorType="ThreeColor"
+											 rampPoint="0">
+								<ai:ThreeColor blue="0.894"
+											   green="0.922"
+											   red="0.925"/>
+							</ai:GradientStop>
+							<ai:GradientStop colorType="ThreeColor"
+											 rampPoint="53.608">
+								<ai:ThreeColor blue="0.678"
+											   green="0.792"
+											   red="0.875"/>
+							</ai:GradientStop>
+							<ai:GradientStop colorType="ThreeColor"
+											 rampPoint="100">
+								<ai:ThreeColor blue="0.22"
+											   green="0.776"
+											   red="0.922"/>
+							</ai:GradientStop>
+						</ai:GradientStops>
+					</ai:Gradient>
+				</ai:Fill>
+			</ai:Path>
+		</ai:PrivateElement>
+		<ai:PrivateElement ai:hashcode="6ef5deba6cb3289f28c541583dc2652b"
+						   d:ref="#5">
+			<ai:Path alpha="0.77"
+					 data="M 147.917 86.068C 147.552 87.3 148.943 88.882 146.628 89.592C 128.829 91.402 108.021 102.868 98.574 116.125C 96.863 118.521 94.22 123.923 93.77 126.549C 92.567 133.512 96.537 139.263 97.611 146.447C 99.495 159.011 99.996 174.645 109.914 179.697C 110.578 180.028 111.278 180.32 112.029 180.558C 112.019 180.842 112.019 181.116 112.039 181.391C 112.261 186.803 117.315 189.959 122.6 187.19C 123.006 186.981 123.389 186.766 123.744 186.546C 126.975 184.624 128.694 182.491 133.174 179.61C 141.611 174.191 148.655 163.625 155.279 162.556C 157.104 163.949 158.7 165.662 160.121 167.633C 166.282 176.189 169.223 189.522 173.538 201.404C 175.826 207.706 178.843 215.212 181.516 223.075C 189.368 246.215 194.212 272.547 168.732 280.999C 162.794 282.972 157.028 284.069 151.424 284.734C 151.098 284.769 150.781 284.809 150.463 284.836C 150.404 284.846 150.347 284.856 150.301 284.856C 139.842 285.982 129.981 285.658 120.679 286.686C 85.244 290.557 69.732 270.244 51.48 256.362C 43.658 250.411 32.604 247.114 24.571 240.255C 24.707 239.572 24.85 238.899 25.013 238.227C 25.33 236.929 25.704 235.667 26.136 234.425C 29.212 225.663 35.2 218.434 43.792 213.724C 47.751 195.094 70.319 191.464 67.818 170.135C 65.994 154.559 47.146 153.346 38.986 142.656C 37.526 140.742 36.345 138.742 35.421 136.677C 34.095 133.76 33.269 130.708 32.837 127.572C 31.078 115.1 35.403 101.219 38.986 88.646C 38.736 88.276 38.458 87.926 38.169 87.584C 34.26 82.904 27.521 81.008 19.766 80.117C 20.054 76.242 20.525 72.555 20.987 68.871C 21.236 66.947 21.475 65.024 21.688 63.062C 27.049 62.882 31.375 63.725 35.038 65.221C 40.207 67.334 44.042 70.755 47.637 74.432C 48.165 73.758 48.723 73.125 49.319 72.509C 49.569 72.224 49.838 71.95 50.125 71.675C 54.854 67.023 60.918 63.686 64.937 58.325C 64.571 57.167 63.974 55.879 63.216 54.496C 63.216 54.487 63.216 54.487 63.216 54.487C 62.678 53.501 62.062 52.468 61.38 51.398C 55.383 41.922 44.677 29.272 44.253 19.862C 44.014 14.509 47.098 10.197 56.287 8.104C 65.339 22.554 68.521 42.793 86.08 48.848C 87.638 46.28 87.32 41.855 88.002 38.425C 94.229 30.664 97.132 19.635 102.418 10.947C 101.821 4.293 103.493 0.145 108.185 0.524C 118.91 1.395 110.49 26.314 104.543 35.828C 103.359 37.724 102.275 39.013 101.456 39.372C 107.551 39.647 112.865 31.413 118.535 26.031C 123.006 21.795 127.695 19.341 133.174 24.211C 132.635 25.462 131.981 26.589 131.241 27.642C 126.053 34.957 116.546 38.027 113.951 47.901C 114.238 48.241 114.538 48.583 114.845 48.914C 119.727 54.259 127.081 58.882 132.529 63.933C 135.432 66.624 137.787 69.438 138.939 72.538C 114.25 72.244 103.014 90.115 80.313 88.646C 80.765 84.978 84.619 84.676 87.041 82.96C 84.59 83.226 82.332 83.831 80.274 84.761C 59.823 93.848 58.036 132.649 72.626 151.186C 61.862 134.005 58.612 95.752 80.313 84.855C 82.716 85.508 78.525 87.385 79.353 89.592C 105.242 90.171 116.575 72.859 145.667 72.538C 145.235 77.701 147.378 80.325 146.628 85.802L 147.917 86.068Z"
+					 knockout="0">
+				<ai:ArtStyle/>
+				<ai:Stroke colorType="ThreeColor"
+						   miterLimit="4"
+						   weight="1">
+					<ai:ThreeColor blue="0.714"
+								   green="0.78"
+								   red="0.8"/>
+				</ai:Stroke>
+				<ai:Fill colorType="Gradient">
+					<ai:Gradient angle="-92.291"
+								 gradientType="linear"
+								 length="126.215"
+								 originX="85.291"
+								 originY="148.876">
+						<ai:GradientStops>
+							<ai:GradientStop colorType="ThreeColor"
+											 rampPoint="0">
+								<ai:ThreeColor blue="0.894"
+											   green="0.922"
+											   red="0.925"/>
+							</ai:GradientStop>
+							<ai:GradientStop colorType="ThreeColor"
+											 rampPoint="53.608">
+								<ai:ThreeColor blue="0.678"
+											   green="0.792"
+											   red="0.875"/>
+							</ai:GradientStop>
+							<ai:GradientStop colorType="ThreeColor"
+											 rampPoint="100">
+								<ai:ThreeColor blue="0.22"
+											   green="0.776"
+											   red="0.922"/>
+							</ai:GradientStop>
+						</ai:GradientStops>
+					</ai:Gradient>
+				</ai:Fill>
+			</ai:Path>
+		</ai:PrivateElement>
+	</fx:Private>
+</s:Group>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" alpha.disabled=".5">
+	<fx:Script>
+		<![CDATA[
+			static private const RadiusX:Number = 3;  
+			static private const RadiusY:Number = 3;  
+			static private const FillColor:Number = 0xFAF9F9;
+			static private const OverColor:Number = 0xE2D8D7;
+			static private const DownColor:Number = 0xD8BCBA;
+			static private const TextSize:Number = 11;
+			static private const TextColor:Number = 0x6a6d89;
+			static private const TextOverColor:Number = 0xFFFFFF;
+			static private const TextDownColor:Number = 0xEA594E;
+		]]>
+	</fx:Script>
+	<fx:Metadata>
+		<![CDATA[ 
+		/** 
+		* @copy spark.skins.default.ApplicationSkin#hostComponent
+		*/
+		[HostComponent("spark.components.Button")]
+		]]>
+	</fx:Metadata>
+	<!-- states -->
+	<s:states>
+		<s:State name="up" />
+		<s:State name="over" />
+		<s:State name="down" />
+		<s:State name="disabled" />
+	</s:states>
+	
+	<!-- border and fill -->
+	<s:Rect id="rect" radiusX="{RadiusX}" radiusY="{RadiusY}" top="0" right="0" bottom="0" left="0">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="{FillColor}"
+								 color.over="{OverColor}"
+								 color.down="{DownColor}"
+								 alpha="0.85"/>
+				<s:GradientEntry color="{FillColor}"
+								 color.over="{OverColor}"
+								 color.down="{DownColor}"
+								 alpha="0.85"/>
+			</s:LinearGradient>
+		</s:fill>
+		<s:stroke>
+			<s:SolidColorStroke color="0xCCCCCC" weight="1"/>
+		</s:stroke>
+	</s:Rect>
+	
+	<!-- text -->
+	<s:Label color="0x131313" 
+			 text="{hostComponent.label}"
+			 fontWeight="bold"
+			 fontSize="{TextSize}"
+			 textAlign="center" verticalAlign="middle"
+			 horizontalCenter="0" verticalCenter="1"
+			 left="12" right="12" top="6" bottom="6"
+			 />
+</s:Skin>

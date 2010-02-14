@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/halo"
+		 xmlns:components="org.robotlegs.demos.rlviewstacks.views.components.*"
+		 xmlns:diagrams="org.robotlegs.demos.rlviewstacks.views.components.diagrams.*"
+		 xmlns:faqs="org.robotlegs.demos.rlviewstacks.views.components.faqs.*"
+		 xmlns:tips="org.robotlegs.demos.rlviewstacks.views.components.tips.*"
+		 xmlns:issues="org.robotlegs.demos.rlviewstacks.views.components.issues.*"
+		 xmlns:prolog="org.robotlegs.demos.rlviewstacks.views.components.prolog.*"
+		 width="90%"
+		 height="100%"
+		>
+	<fx:Script>
+		<![CDATA[
+	]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="navigation"/>
+	</s:states>
+	<mx:ViewStack y="31"
+				  id="mainStack"
+				  width="100%"
+				  height="95%"
+				  horizontalCenter="0">
+		<mx:Canvas label="Prolog">
+			<prolog:PrologView x="0"
+							   y="0"/>
+		</mx:Canvas>
+		<mx:Canvas label="Diagrams">
+			<diagrams:DiagramsView x="0"
+								   y="0"/>
+		</mx:Canvas>
+		<mx:Canvas id="faq"
+				   label="FAQ">
+			<faqs:FaqView x="0"
+						  y="0"/>
+		</mx:Canvas>
+		<mx:Canvas id="tips"
+				   label="TipsAndTricks">
+			<tips:TipsView x="0"
+						   y="0"
+						   width="80%"/>
+		</mx:Canvas>
+		<mx:Canvas id="issues"
+				   label="Issues">
+			<issues:IssuesView x="0"
+							   y="0"/>
+		</mx:Canvas>
+		<mx:Canvas id="demos"
+				   label="Demos">
+			<mx:Label x="282"
+					  y="153"
+					  text="demos"/>
+		</mx:Canvas>
+		<mx:Canvas id="links"
+				   label="Links">
+			<mx:Label x="266"
+					  y="176"
+					  text="links"/>
+		</mx:Canvas>
+		<mx:Canvas id="critique"
+				   label="Critique">
+			<mx:Label x="266"
+					  y="176"
+					  text="do you want that?"/>
+		</mx:Canvas>
+	</mx:ViewStack>
+	<components:TheBrain horizontalCenter="0"
+						 bottom="25"/>
+	<mx:TabBar dataProvider="{mainStack}"
+			   horizontalCenter="0"
+			   bottom="0"/>
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+</s:Group>

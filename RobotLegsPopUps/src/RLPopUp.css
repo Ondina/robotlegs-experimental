@@ -1,0 +1,30 @@
+/* RL css */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/halo";
+
+global
+{
+	fontFamily: Verdana;
+	rollOverColor:						#FA9B1F;
+	selectionColor:						#E6BA53;
+	focusColor: 						#D0DEA9;
+	symbolColor: 						#6A6D89;
+	color: 								#424242;
+	textRollOverColor: 					#333333;
+	textSelectedColor: 					#C0C2CE;
+	themeColor:							#d7dfe4;
+}
+s|Button{
+	color: #000000;
+    fontSize: 14;
+	skinClass:ClassReference("org.robotlegs.demos.rlpopup.views.components.skins.SkinButton");	
+	baseColor:#CCCCCC;		
+}
+s|Panel{
+	skinClass:ClassReference("org.robotlegs.demos.rlpopup.views.components.skins.SkinPanel");	
+}
+mx|ToolTip {
+    backgroundAlpha: 1.0;
+    backgroundColor: #d7dfe4;
+    fontSize: 14;
+}

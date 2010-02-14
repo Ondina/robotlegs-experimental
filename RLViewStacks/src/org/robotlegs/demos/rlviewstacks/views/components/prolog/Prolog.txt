@@ -1,0 +1,37 @@
+The idea behind this demo: 
+First of all,  it doesn’t have to be a “SUPER DEMO PROJECT”, even if I said something smelling like  this on the discussion group.
+
+I see at least 4  levels that should belong  to a framework for Flas/Flex:
+1.	A discussion group or preferably a forum
+2.	A Website presenting the framework with all the stuff belonging to it: demos, documentation, links etc
+3.	Repositories for framework code, demos. (in RL’s case it’s github)
+4.	Playground
+
+1-3 exist already - to  some extent- and you can see them in almost every framework- community .
+4th : I can’t come up with a better name right now, so I will call it Playground for now.
+
+The missing part in EVERY  Flash/Flex framework - I’ve seen so far-  is the “REAL WORLD” demo  application. The existing demos might be excellent for learning, but they don’t help you much when you arrive at the point where you try to integrate them into your project. Of course it is good to have little demos for different things, I don’t know how to call them, things like how to handle deferred instantion of Flex views,  PopUp, asynchronous commands…so some solutions for problematic  functionality. Without them it wouldn’t be so easy  to start learning. But where is the demo that will show you how scalable the framework is and how to integrated the little utilities with  your project?
+Don’t tell me that every project is different, having different design, means and expectations :)
+I know that. And I know RL is still very young, so I’m not complaining about the lack of such complex examples. But even at later stages of a framework who would have the time to make such a big demo? The framework’s creators and  team? Probably not, because they have to manage the community, documentation, bugs..and got a life too, right?  The users? No. Because almost everyone has one or more “real life” projects to work on, and can’t afford to spend too much time supporting a community. You can’t make your project public, because of the known reasons.  Or also because of  the principle: “take everything you can get, give as little as possible in return”, right? 
+But there are many who would like to share their skills in a way or another. How many? No idea.
+
+If this “Playground” I’m talking about would have a home on a framework’s server, the little pieces (the little demos) could be put together and everyone could see them in action and judge the validity or practicability  of a specific solution in a bigger context.  A modular approach would be required, but not necessarily in form of  Flex-Modules.
+As I already said, it should be database driven to become really functional. 
+Say  the structure would be something similar to the tabs below. Maybe a few more , but that’s another topic.
+
+Say someone found a good way to handle PopUp-Logic. It could be used inside the Links section.
+The links added by the users, saved in a DB table would show up in the DataGrid. 
+Clicking on a “more details” button a TitleWindow would retrieve the details /comments for the specific link and present them to the user.
+An “EditForm”  would let users add links and comments to the database.
+Under the section “Diagrams” someone else could integrate their demos regarding the loading of assets at runtime for example.
+Under the section “Critique” …err…well there won’t be anything to see ;-)
+An empty View, well designed, with a perfect layout, following the best practices rules of the best mvc framework ever!
+
+The general idea is that if you, the creators ( and other friendly dictators ), would think a user’s demo would be worth the money, that demo would be added to the “Playground”. 
+That demo would be on github for downloading it separately, but also  visible  in action in that utopian Playground of mine.
+It would be a real world example, growing and evolving, everyone (members) could participate in a way or another, spending more or less of their time.
+Of course a forum is the best place for questions and communication between community members, but it depends very much on the platform(which forum), on the structure of the threads , on how easy is to find a topic you are interested in, on whom you ask, and  on many other factors …where was I?, it depends  on all of the above whether you find the solution you are after.
+And sometimes(for me most of the time) a working example is better than thousand words. 
+
+I have more to say, but … it took me an hour to write this down, so I’ll stop here.
+If it wasn’t comprehensible or if you think it’s pure nonsense, please tell me so. If not, I could say more about it, some time later or tomorrow or whenever.

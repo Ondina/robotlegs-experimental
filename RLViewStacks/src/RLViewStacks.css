@@ -1,0 +1,47 @@
+/* LazyFSM */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/halo";
+
+global
+{
+	fontFamily: Verdana;
+	rollOverColor:						#FA9B1F;
+	selectionColor:						#E6BA53;
+	focusColor: 						#D0DEA9;
+	symbolColor: 						#6A6D89;
+	color: 								#424242;
+	textRollOverColor: 					#333333;
+	textSelectedColor: 					#C0C2CE;
+	themeColor:							#E6BA53;
+}
+
+s|TextInput {
+	/*fontFamily: "ArialDF4";*/
+}
+mx|Label {
+	/*fontFamily: "ArialDF3";*/
+}
+s|Button{
+	color: #000000;
+    fontSize: 14;
+	skinClass:ClassReference("org.robotlegs.demos.rlviewstacks.views.components.skins.SkinButton");	
+	baseColor:#CCCCCC;		
+}
+s|Button#toggler{
+	color: #000000;
+    fontSize: 14;
+	skinClass:ClassReference("org.robotlegs.demos.rlviewstacks.views.components.skins.SkinVerticalButton");	
+	baseColor:#CCCCCC;
+}
+s|Panel{
+	skinClass:ClassReference("org.robotlegs.demos.rlviewstacks.views.components.skins.SkinPanel");	
+}
+mx|ToolTip {
+    backgroundAlpha: 1.0;
+    backgroundColor: #E6BA53;
+    color: white;
+    fontSize: 14;
+}
+mx|TabBar {
+	horizontalGap: 3;		
+}

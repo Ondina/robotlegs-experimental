@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/halo"
+		 width="580">
+	<fx:Script>
+		<![CDATA[
+			import org.robotlegs.demos.rlpopup.events.SearchEventOne;
+			import org.robotlegs.demos.rlpopup.models.vo.SearchVO;
+			import org.robotlegs.demos.rlpopup.views.validators.FormChecker;
+
+			private var formsChecker:FormChecker=new FormChecker(this);
+			public var chainText:Dictionary=new Dictionary();
+			[Bindable]
+			public var viewsVO:SearchVO=new SearchVO();
+
+			protected function searchButton_clickHandler():void
+			{
+				formsChecker.getFormVO(SearchVO);
+				dispatchEvent(new SearchEventOne(SearchEventOne.NEED_DATA, viewsVO));
+			}
+
+			public function showData(sResult:String):void
+			{
+				searchResult.text=sResult;
+			}
+		]]>
+	</fx:Script>
+	<s:Border borderWeight="1"
+			  cornerRadius="3">
+		<s:Label x="10"
+				 y="15"
+				 text="search for:"
+				 color="#F34646"/>
+		<s:TextInput x="102"
+					 y="10"
+					 id="searchFor"
+					 toolTip="type 'rl' for example"/>
+		<s:Label x="10"
+				 y="63"
+				 text="search result:"
+				 color="#F43A3A"/>
+		<s:RichText x="102"
+					y="62"
+					id="searchResult"
+					text="waiting for results"
+					width="363"
+					height="35"/>
+		<s:Button x="237"
+				  y="9.5"
+				  label="search 1"
+				  id="searchButton"
+				  click="searchButton_clickHandler()"/>
+		<s:Label text="CallerOneView 1"
+				 color="#FA0505"
+				 right="10"
+				 top="10"
+				 fontSize="12"
+				 fontWeight="bold"/>
+	</s:Border>
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+</s:Group>

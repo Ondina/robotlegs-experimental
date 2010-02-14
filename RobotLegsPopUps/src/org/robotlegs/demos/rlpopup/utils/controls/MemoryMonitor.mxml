@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/halo"
+		 creationComplete="initApp()"
+		 width="406">
+	<fx:Script>
+		<![CDATA[
+		import mx.events.EffectEvent;
+		import flash.utils.Timer;
+		[Bindable]
+		private var animationDistance:uint;
+		private var componentCollapsed:Boolean = true;
+		private var interval:int = 200;
+		private var callbackFunction:Function = null;
+		private var timer:Timer;
+		private var maxmem:Number = 0;
+		private var minmem:Number = 0;
+		private var lasttotal:Number = 0;
+		private var count:int=0;
+		[Bindable]
+		public var maxIterations:int=100;
+		[Bindable]
+		public var forceGC:Boolean = true;   
+		private function initApp():void{
+			animationDistance = pan.width;
+			startMemoryMonitor();
+		}  
+		protected function gcHack():void{
+			// unsupported hack that seems to force a full GC
+			try {
+				var lc1:LocalConnection = new LocalConnection();
+				var lc2:LocalConnection = new LocalConnection();
+				lc1.connect('name');
+				lc2.connect('name');
+			}
+			catch (e:Error)
+			{
+			}
+		}     
+		protected function timerHandler(event:Event):void{
+			if(forceGC){gcHack();}
+			var totalmem:Number = System.totalMemory;
+			if (totalmem < lasttotal)
+				lasttotal = totalmem;
+			total.text = numberFormatter.format(totalmem/1024) + " K";
+			maxmem = Math.max(maxmem, System.totalMemory);
+			max.text = numberFormatter.format(maxmem/1024) + " K";
+			if(minmem==0){
+				minmem=totalmem;
+				min.text=numberFormatter.format(minmem/1024) + " K";
+			}	
+			else{
+				minmem=Math.min(minmem,System.totalMemory)
+				min.text=numberFormatter.format(minmem/1024) + " K";
+			}			
+			if (callbackFunction != null)
+				callbackFunction();
+		}
+		protected function startMemoryMonitor():void
+		{
+			timer = new Timer(interval);
+			timer.addEventListener("timer", timerHandler);
+			timer.start();
+		}
+		protected function stopMemoryMonitor():void
+		{
+			timer.stop();
+			timer.removeEventListener("timer", timerHandler);
+			timer = null;
+		}
+		protected function toggleAnimation(event:Event):void{
+			if(componentCollapsed){
+				moveLeft.end();
+				moveLeft.play();
+			}else{
+				moveRight.end();
+				moveRight.play();
+			}
+		}	 
+		protected function moveLeft_effectEndHandler(event:EffectEvent):void
+		{
+			startMemoryMonitor();
+			componentCollapsed = false;
+		}
+		protected function moveRight_effectEndHandler(event:EffectEvent):void
+		{
+			stopMemoryMonitor();
+			componentCollapsed = true;
+		}
+
+	]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:Sine id="sineEasing"
+				easeInFraction="0.3"/>
+		<s:Power id="powerEasing"
+				 exponent="4"/>
+		<s:Move id="moveRight"
+				target="{pan}"
+				xBy="{animationDistance}"
+				duration="800"
+				easer="{sineEasing}"
+				effectEnd="moveRight_effectEndHandler(event)"/>
+		<s:Move id="moveLeft"
+				target="{pan}"
+				xBy="{-animationDistance}"
+				duration="800"
+				easer="{powerEasing}"
+				effectEnd="moveLeft_effectEndHandler(event)"/>
+		<mx:NumberFormatter id="numberFormatter"
+							precision="-1"
+							useThousandsSeparator="true"
+							useNegativeSign="true"/>
+	</fx:Declarations>
+	<s:Panel id="pan"
+			 y="0"
+			 width="380"
+			 height="90"
+			 title="Memory Monitor"
+			 x="{pan.width+toggler.height}">
+		<mx:Label text="min:"
+				  x="12"
+				  y="15"/>
+		<mx:Label text="current:"
+				  x="130"
+				  y="15"/>
+		<mx:Label text="max:"
+				  x="255"
+				  y="15"/>
+		<mx:Label x="42"
+				  y="15"
+				  id="min"/>
+		<mx:Label x="184"
+				  y="15"
+				  id="total"/>
+		<mx:Label x="290"
+				  y="15"
+				  id="max"/>
+		<s:Button id="toggler"
+				  direction="ltr"
+				  rotation="-90"
+				  label="memory"
+				  click="toggleAnimation(event);"
+				  height="24"
+				  toolTip="Memory Monitor"
+				  left="-17"
+				  width="90"
+				  y="58"/>
+	</s:Panel>
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+</s:Group>

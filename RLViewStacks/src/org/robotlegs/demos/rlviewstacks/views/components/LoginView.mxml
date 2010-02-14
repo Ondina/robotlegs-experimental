@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/halo"
+		 xmlns:components="org.robotlegs.demos.rlviewstacks.views.components.*"
+		 creationComplete="addedToStageHandler(event);"
+		 removedFromStage="removeFromStageHandler(event);">
+	<fx:Script>
+	<![CDATA[
+		import org.robotlegs.demos.rlviewstacks.events.LoginEvent;
+		import org.robotlegs.demos.rlviewstacks.models.vo.LoginVO;
+		import mx.events.ValidationResultEvent;
+		
+		[Bindable]
+		public var loginVO:LoginVO;
+		
+		public function addedToStageHandler(event:Event):void
+		{
+			this.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+			user_name.setFocus();
+		}
+		
+		public function removeFromStageHandler(event:Event):void
+		{
+			this.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+			resetLogin();
+		}
+		
+		override protected function keyDownHandler(event:KeyboardEvent):void
+		{
+			super.keyDownHandler(event);
+			if (event.keyCode == Keyboard.ENTER)
+				loginUser();
+		}
+		
+		private function loginUser(event:MouseEvent=null):void
+		{
+			vUsername.enabled=true;
+			vPassword.enabled=true;
+			var noUsername:Boolean=vUsername.validate().type == ValidationResultEvent.INVALID;
+			var noPassword:Boolean=vPassword.validate().type == ValidationResultEvent.INVALID;
+			if (noUsername || noPassword)
+			{
+				oneHeart.heartScale();
+				return;
+			}
+			else
+			{
+				dispatchEvent(new LoginEvent(LoginEvent.TRY_LOGIN));
+			}
+		}
+		
+		public function resetLogin():void
+		{
+			vUsername.enabled=false;
+			vPassword.enabled=false;
+			user_name.text="";
+			user_password.text="";
+		}
+	]]>
+	</fx:Script>
+	<fx:Declarations>
+		<mx:StringValidator id="vUsername"
+							source="{user_name}"
+							property="text"
+							required="true"/>
+		<mx:StringValidator id="vPassword"
+							source="{user_password}"
+							property="text"
+							required="true"/>
+	</fx:Declarations>
+	<s:Panel x="0"
+			 y="0"
+			 title="One Heart"
+			 width="200">
+		<components:TheHeart x="0"
+							 y="0"
+							 id="oneHeart"/>
+		<mx:Label x="24"
+				  y="36"
+				  text="username"/>
+		<s:TextInput x="87"
+					 y="35.5"
+					 alpha=".5"
+					 id="user_name"
+					 text="rl"
+					 width="95"/>
+		<mx:Label x="24"
+				  y="73"
+				  text="password"/>
+		<s:TextInput x="88"
+					 y="72.5"
+					 alpha=".5"
+					 id="user_password"
+					 text="rl"
+					 displayAsPassword="true"
+					 width="94"/>
+		<s:Button y="122"
+				  label="Login"
+				  id="loginButton"
+				  click="loginUser(event);"
+				  x="112"/>
+	</s:Panel>
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+</s:Group>

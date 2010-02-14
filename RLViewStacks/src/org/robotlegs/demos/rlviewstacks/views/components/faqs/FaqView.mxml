@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/halo">
+	<s:Panel x="10" y="10" width="493" height="469" title="FAQ">
+		<mx:Label x="7" y="8" text="Search"/>
+		<s:TextInput x="59" y="7"/>
+		<mx:AdvancedDataGrid x="7" y="40" id="adg1" designViewDataType="tree" width="474">
+			<mx:columns>
+				<mx:AdvancedDataGridColumn headerText="Question" dataField="col1"/>
+				<mx:AdvancedDataGridColumn headerText="Answer" dataField="col2"/>
+				<mx:AdvancedDataGridColumn headerText="Links" dataField="col3"/>
+			</mx:columns>
+		</mx:AdvancedDataGrid>
+		<s:RichEditableText x="11" y="238" text="Lorem ipsum dolor sit amet" id="faqText" width="469" height="53"/>
+	</s:Panel>
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+</s:Group>

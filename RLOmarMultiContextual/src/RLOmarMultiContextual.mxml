@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/halo"
+			   xmlns:views="org.robotlegs.examples.views.*"
+			   preinitialize="onPreInitialize()"
+			   xmlns:views1="org.robotlegs.examples.multiContextualDemo.views.*">
+	<fx:Script>
+		<![CDATA[
+			import org.robotlegs.examples.multiContextualDemo.events.ModulesEvent;
+			import org.robotlegs.examples.multiContextualDemo.contexts.MainContext;
+			import org.robotlegs.examples.multiContextualDemo.views.ModuleOne;
+			import org.robotlegs.examples.multiContextualDemo.views.ModuleTwo;
+
+			private var context:MainContext;
+
+			private var moduleOne:ModuleOne;
+			private var moduleTwo:ModuleTwo;
+
+			private function onPreInitialize():void
+			{
+				context=new MainContext(this);
+			}
+
+			private function loadModules(event:Event):void
+			{
+				//to MainViewMediator
+				var module:String=event.currentTarget.name;
+				dispatchEvent(new ModulesEvent(ModulesEvent.SWITCH_CONTEXT, module));
+			}
+
+			public function addTheModule(module:String):void
+			{
+				switch (module)
+				{
+					case "ModuleOne":
+						moduleOne=new ModuleOne();
+						this.moduleHolder.addElement(moduleOne);
+						break;
+					case "ModuleTwo":
+						moduleTwo=new ModuleTwo();
+						this.moduleHolder.addElement(moduleTwo);
+						break;
+				}
+			}
+
+			public function removeTheModule(module:String):void
+			{
+				trace("removeTheModule " + module);
+				switch (module)
+				{
+					case "ModuleOne":
+						this.moduleHolder.removeElement(moduleOne);
+						break;
+					case "ModuleTwo":
+						this.moduleHolder.removeElement(moduleTwo);
+						break;
+				}
+			}
+
+			public function goHome():void
+			{
+				dispatchEvent(new ModulesEvent(ModulesEvent.SWITCH_CONTEXT, "Home"));
+			}
+		]]>
+	</fx:Script>
+	<s:Button id="moduleOneBtn"
+			  name="ModuleOne"
+			  x="128"
+			  y="24"
+			  label="Module One"
+			  click="loadModules(event)"/>
+	<s:Button id="moduleTwoBtn"
+			  name="ModuleTwo"
+			  x="223"
+			  y="24"
+			  label="Module Two"
+			  click="loadModules(event)"/>
+	<s:Button id="HomeBtn"
+			  x="50"
+			  y="24"
+			  label="Home"
+			  click="goHome()"/>
+	<s:Label x="463"
+			 y="10"
+			 text="MainView = Home"/>
+	<s:Group x="54"
+			 y="91"
+			 id="moduleHolder"/>
+</s:Application>

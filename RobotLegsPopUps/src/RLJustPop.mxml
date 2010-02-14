@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/halo"
+			   xmlns:views="org.robotlegs.demos.rlpopup.views.components.*"
+			   xmlns:utils="org.robotlegs.demos.rlpopup.utils.controls.*"
+			   preinitialize="onPreInitialize()"
+			   opaqueBackground="true">
+	<fx:Style source="RLPopUp.css"/>
+	<fx:Script>
+		<![CDATA[
+			import org.robotlegs.demos.rlpopup.RLJustPopContext;
+
+			private var context:RLJustPopContext;
+
+			[Bindable]
+			public var loggMessage:String="";
+
+			private function onPreInitialize():void
+			{
+				context=new RLJustPopContext(this);
+			}
+		]]>
+	</fx:Script>
+	<views:MainView width="100%"
+					height="100%"
+					horizontalCenter="0"
+					verticalCenter="0"/>
+	<s:SkinnableContainer y="0"
+						  height="100%"
+						  right="0"
+						  id="utilsHolder">
+		<utils:MemoryMonitor id="memo"
+							 y="0"
+							 right="0"/>
+		<utils:LoggerMonitor id="logger"
+							 loggText="{loggMessage}"
+							 y="100"/>
+	</s:SkinnableContainer>
+</s:Application>

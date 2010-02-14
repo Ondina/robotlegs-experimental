@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:fx="http://ns.adobe.com/mxml/2009">
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<fx:Script>
+		<![CDATA[
+		[Bindable]
+		public var brainColor:uint=0xd8d8d8;
+	]]>
+	</fx:Script>
+	<fx:Metadata>[HostComponent("spark.components.Button")]</fx:Metadata>
+	<s:Path winding="nonZero"
+			data="M 71.114 109.393 C 71.044 111.393 68.024 113.993 66.264 114.333 C 55.667 116.399 57.053 102.049 48.45 101.063 C 33.131 99.309 25.625 113.848 11.399 100.138 C -0.065 89.089 -2.309 64.144 3.836 50.472 C 10.555 35.523 25.166 24.103 38.932 15.968 C 66.442 -0.29 102.716 -5.995 131.854 9.996 C 153.793 22.037 175.14 41.861 184.479 65.424 C 189.315 77.627 190.24 88.743 185.142 101.083 C 179.943 113.661 170.349 122.296 160.441 108.075 C 144.537 85.233 105.423 46.351 76.944 50.013 C 65.278 51.513 21.173 72.437 40.444 82.073 C 49.774 86.743 49.524 97.193 61.114 96.073 C 71.444 95.063 71.114 109.213 71.114 109.393 Z">
+		<s:fill>
+			<s:SolidColor color="{brainColor}"
+						  color.over="0xE6BA53"/>
+		</s:fill>
+		<s:stroke>
+			<s:SolidColorStroke color="0xcccccc"
+								caps="none"
+								weight="1"
+								joints="miter"
+								miterLimit="4"/>
+		</s:stroke>
+	</s:Path>
+</s:Skin>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:ai="http://ns.adobe.com/ai/2008"
+		 xmlns:d="http://ns.adobe.com/fxg/2008/dt"
+		 xmlns:fc="http://ns.adobe.com/thermo/2009"
+		 xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/halo"
+		 height="232"
+		 width="232"
+		 creationComplete="group1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+		import mx.events.FlexEvent;
+		import mx.events.EffectEvent;
+		import org.robotlegs.demos.rlviewstacks.events.BrainEvent;
+		[Bindable]
+		private var animationDistance:uint=50;
+		protected function brain_mouseDown():void
+		{
+			flipper.play();
+			dispatchEvent(new BrainEvent(BrainEvent.BRAIN_ACTION, "some brain activity"));
+		}
+		
+		protected function group1_creationCompleteHandler(event:FlexEvent):void
+		{
+			scaleDecrease.end(); 
+			scaleDecrease.play();
+			scaleIncrease.end(); 
+			scaleIncrease.duration=500;
+			scaleIncrease.play();
+			moveEffect.duration=1000;
+			moveEffect.play();
+		}
+	]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="brain_base"/>
+	</s:states>
+	<fx:Declarations>
+		<s:Animate id="scaleIncrease"
+				   target="{brains}">
+			<s:SimpleMotionPath property="scaleX"
+								valueFrom=".4"
+								valueTo="1.0"/>
+			<s:SimpleMotionPath property="scaleY"
+								valueFrom=".4"
+								valueTo="1.0"/>
+		</s:Animate>
+		<s:Animate id="scaleDecrease"
+				   target="{brains}">
+			<s:SimpleMotionPath property="scaleX"
+								valueFrom="1.0"
+								valueTo="0.4"/>
+			<s:SimpleMotionPath property="scaleY"
+								valueFrom="1.0"
+								valueTo="0.4"/>
+		</s:Animate>
+		<s:Move3D id="moveEffect"
+				  target="{brains}"
+				  xBy="100"
+				  zBy="100"
+				  repeatCount="2"
+				  repeatBehavior="reverse"/>
+		<s:Rotate3D id="rotateEffect"
+					duration="1000"
+					target="{brains}"
+					angleXFrom="0"
+					angleXTo="360"
+					repeatCount="1"
+					repeatBehavior="reverse"/>
+		<mx:Parallel id="flipper">
+			<s:Animate id="myflip_a"
+					   target="{brainButton}"
+					   repeatCount="2"
+					   repeatBehavior="reverse"
+					   duration="1000">
+				<s:SimpleMotionPath property="force"
+									valueFrom="0"
+									valueTo="1.8"/>
+				<s:SimpleMotionPath property="offset"
+									valueFrom="1"
+									valueTo="0.3"/>
+				<s:SimpleMotionPath property="angle"
+									valueFrom="-1.00"
+									valueTo="0.3"/>
+			</s:Animate>
+			<s:Animate id="myflip_b"
+					   target="{brainButton}"
+					   startDelay="250"
+					   duration="1000">
+				<s:SimpleMotionPath property="rotationY"
+									valueFrom="180"
+									valueTo="1"/>
+			</s:Animate>
+		</mx:Parallel>
+	</fx:Declarations>
+	<fx:DesignLayer d:id="2"
+					d:userLabel="Layer 1">
+		<s:Group id="brains"
+				 mouseDown="brain_mouseDown()">
+			<s:Group ai:knockout="0"
+					 d:userLabel="Layer 7"
+					 id="group3">
+				<s:Path winding="nonZero"
+						data="M 1.75 158.474 C 1.75 158.474 15.08 137.144 20.42 127.144 C 25.76 117.15 19.09 119.82 20.42 105.82 C 21.75 91.82 20.42 76.49 24.42 65.82 C 28.42 55.15 28.42 50.49 39.752 36.487 C 62.155 8.805 109.86 -2.468 144.41 1.16 C 198.72 6.863 246.953 72.623 226.599 126.329 C 221.392 140.067 209.339 150.125 205.107 164.353 C 200.497 179.855 196.182 201.356 203.746 216.483 C 205.746 220.483 207.746 230.68 207.746 230.68 L 31.08 230.68 C 31.08 230.68 23.145 207.749 25.583 206.477 C 29.416 204.477 35.82 199.546 30.42 198.474 C 27.916 197.977 21.09 198.474 19.75 192.474 C 18.41 186.474 31.75 171.144 20.42 173.804 C 9.09 176.464 -3.417 167.644 1.75 158.474 Z"
+						x="0">
+					<s:fill>
+						<s:LinearGradient rotation="90">
+							<s:GradientEntry color="#d8d8d8"
+											 alpha="1.0"
+											 ratio="0"/>
+							<s:GradientEntry color="#ffffff"
+											 alpha="0.0"
+											 ratio="1"/>
+						</s:LinearGradient>
+					</s:fill>
+					<s:stroke>
+						<s:SolidColorStroke color="0xcccccc"
+											caps="none"
+											weight="1"
+											joints="miter"
+											miterLimit="4"/>
+					</s:stroke>
+				</s:Path>
+			</s:Group>
+			<s:Group x="35"
+					 y="9"
+					 ai:knockout="0"
+					 d:userLabel="Layer 8"
+					 id="group1">
+				<s:RichText y="35"
+							x="37"
+							color="#E6BA53"
+							text="top secret thoughts"
+							fontSize="12"/>
+				<s:Button id="brainButton"
+						  toolTip="some brains"
+						  skinClass="org.robotlegs.demos.rlviewstacks.views.components.skins.BrainButton"/>
+				<s:Path winding="nonZero"
+						data="M 92.846 54.069 C 93.093 58.425 91.99 62.756 88.82 66.765 C 81.254 76.332 63.307 77.823 59.03 83.027 C 54.823 88.146 55.14 105.367 55.81 112.037 C 56.261 116.487 60.367 142.13 61.14 145.367 C 61.807 148.157 49.14 146.697 49.14 146.697 C 49.14 146.697 42.481 102.732 39.14 92.035 C 35.015 78.84 23.08 70.237 15.242 59.425 C 8.61 50.28 12.301 39.92 7.144 29.997 C 3.194 22.394 -3.729 9.296 3.808 3.483 C 15.046 -5.183 30.219 7.192 39.558 12.985 C 46.778 17.465 53.033 10.528 60.526 12.284 C 68.174 14.076 75.537 23.822 80.436 29.488 C 86.117 36.058 92.336 45.118 92.846 54.069 Z"
+						x="68"
+						y="67">
+					<s:stroke>
+						<s:SolidColorStroke color="0xcccccc"
+											caps="none"
+											weight="1"
+											joints="miter"
+											miterLimit="4"/>
+					</s:stroke>
+				</s:Path>
+			</s:Group>
+			<s:Group x="7"
+					 y="62"
+					 ai:knockout="0"
+					 d:userLabel="Layer 9"
+					 id="group2">
+				<s:Path winding="nonZero"
+						data="M 12.992 30.998 C 8.753 32.121 5.992 30.164 2.658 26.664 C -7.495 16.004 23.64 5.198 28.448 3.507 C 40.788 -0.833 50.437 -0.595 61.493 5 C 66.373 7.471 90.769 26.486 71.662 23.682 C 62.572 22.347 48.516 9.676 38.492 9.998 C 25.379 10.418 26.825 27.331 12.992 30.998 Z"
+						x="69">
+					<s:fill>
+						<s:SolidColor color="#808080"/>
+					</s:fill>
+					<s:stroke>
+						<s:SolidColorStroke color="0xcccccc"
+											caps="none"
+											weight="1"
+											joints="miter"
+											miterLimit="4"/>
+					</s:stroke>
+				</s:Path>
+				<s:Path winding="nonZero"
+						data="M 24.57 5.377 C 21.083 3.192 7.639 -1.429 4.438 1.398 C -2.245 7.301 6.718 13 7.438 20.731 C 7.732 23.895 5.039 25.904 3.188 28.045 C -3.718 36.037 3.8 48.896 12.598 52.061 C 27.992 57.599 32.217 98.761 33.268 106.061 C 35.938 124.731 36.605 132.558 36.605 132.558 L 40.598 132.061 C 38.605 111.225 38.605 111.725 35.928 84.731 C 34.405 69.376 33.417 56.881 29.928 42.051 C 26.649 28.081 36.912 13.134 24.57 5.377 Z"
+						x="111"
+						y="26">
+					<s:fill>
+						<s:SolidColor color="#bfbfbf"/>
+					</s:fill>
+					<s:stroke>
+						<s:SolidColorStroke color="0xcccccc"
+											caps="none"
+											weight="1"
+											joints="miter"
+											miterLimit="4"/>
+					</s:stroke>
+				</s:Path>
+				<s:Path winding="nonZero"
+						data="M 4.185 31.93 C -1.256 16.9 -1.819 -1.933 10.577 0.758 C 17.847 2.357 21.987 7.477 27.258 12.767 C 34.678 20.207 44.307 34.271 35.445 43.503 C 31.558 47.553 22.873 50.439 17.34 49.381 C 12.362 48.43 7.415 40.847 4.185 31.93 Z"
+						x="144"
+						y="31">
+					<s:fill>
+						<s:SolidColor color="#808080"/>
+					</s:fill>
+					<s:stroke>
+						<s:SolidColorStroke color="0xcccccc"
+											caps="none"
+											weight="1"
+											joints="miter"
+											miterLimit="4"/>
+					</s:stroke>
+				</s:Path>
+				<s:Path winding="nonZero"
+						data="M 29.371 3.293 C 24.522 5.82 20.472 9.641 16.552 13.411 C 10.222 19.491 -0.028 33.211 0.521 41.463 C 1.249 52.396 34.542 45.89 40.83 45.144 C 59.573 42.921 87.329 35.982 101.312 53.071 C 111.35 65.352 113.167 82.612 113.968 97.871 C 116.857 97.871 119.747 97.871 122.644 97.857 C 124.305 71.874 111.304 45.218 100.975 34.541 C 85.792 18.849 69.304 5.746 47.668 1.266 C 40.1 -0.302 34.46 0.638 29.371 3.293 Z"
+						y="61">
+					<s:stroke>
+						<s:SolidColorStroke color="0xcccccc"
+											caps="none"
+											weight="1"
+											joints="miter"
+											miterLimit="4"/>
+					</s:stroke>
+				</s:Path>
+				<s:Path winding="nonZero"
+						data="M 77.912 46.711 C 79.029 46.585 76.049 33.654 75.777 32.845 C 70.429 16.992 48.696 3.141 32.561 0.831 C 14.181 -1.799 -0.919 12.651 0.581 30.711 C 1.351 39.961 -1.439 49.841 9.912 50.711 C 28.535 52.138 77.715 46.733 77.912 46.711 Z"
+						x="28"
+						y="109">
+					<s:stroke>
+						<s:SolidColorStroke color="0xcccccc"
+											caps="none"
+											weight="1"
+											joints="miter"
+											miterLimit="4"/>
+					</s:stroke>
+				</s:Path>
+				<s:Path winding="nonZero"
+						data="M 0.508 1.471 C 0.097 -1.388 8.288 2.792 8.907 3.441 C 11.968 6.651 15.541 16.914 13.171 20.974 C 11.541 22.804 4.067 26.341 3.838 24.801 C 3.828 24.761 0.508 1.501 0.508 1.471 Z"
+						x="121"
+						y="115">
+					<s:stroke>
+						<s:SolidColorStroke color="0xcccccc"
+											caps="none"
+											weight="1"
+											joints="miter"
+											miterLimit="4"/>
+					</s:stroke>
+				</s:Path>
+				<s:Path winding="nonZero"
+						data="M 0.488 5.674 C 0.517 5.664 6.145 4.018 10.155 0.508 C 12.815 4.518 12.761 8.868 12.821 14.341 C 12.261 16.701 6.488 17.341 1.717 17.742 C 1.618 16.721 0.698 5.594 0.488 5.674 Z"
+						x="125"
+						y="138">
+					<s:stroke>
+						<s:SolidColorStroke color="0xcccccc"
+											caps="none"
+											weight="1"
+											joints="miter"
+											miterLimit="4"/>
+					</s:stroke>
+				</s:Path>
+				<s:Path winding="nonZero"
+						data="M 0.488 3.621 C 0.438 4.161 5.155 0.458 8.387 0.491 C 12.118 1.591 13.597 9.701 14.757 12.942 C 13.188 13.541 10.647 14.508 8.988 14.958 C 1.658 16.958 2.488 14.951 2.488 14.951 C 2.488 14.951 0.478 3.762 0.488 3.621 Z"
+						x="154"
+						y="119">
+					<s:stroke>
+						<s:SolidColorStroke color="0xcccccc"
+											caps="none"
+											weight="1"
+											joints="miter"
+											miterLimit="4"/>
+					</s:stroke>
+				</s:Path>
+				<s:Path winding="nonZero"
+						data="M 0.518 0.971 C 0.447 -0.208 7.848 1.141 10.648 1.911 C 14.355 4.141 18.717 11.962 15.848 15.441 C 11.728 20.431 5.855 14.475 1.178 12.311 C 1.188 12.311 0.528 1.021 0.518 0.971 Z"
+						x="156"
+						y="138">
+					<s:stroke>
+						<s:SolidColorStroke color="0xcccccc"
+											caps="none"
+											weight="1"
+											joints="miter"
+											miterLimit="4"/>
+					</s:stroke>
+				</s:Path>
+			</s:Group>
+		</s:Group>
+	</fx:DesignLayer>
+	<fx:Private>
+		<ai:PrivateElement d:ref="#2">
+			<ai:LayerOptions colorType="ThreeColor">
+				<ai:ThreeColor blue="257"
+							   green="128.502"
+							   red="79.31"/>
+			</ai:LayerOptions>
+		</ai:PrivateElement>
+	</fx:Private>
+</s:Group>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/halo"
+		 xmlns:search="org.robotlegs.demos.rlpopup.views.components.popups.*">
+	<!--the 3 Views containing a search input field, a search button, and results comming from the popup-->
+	<!--I called them "CallerView" because they (call) trigger the oppening of the TitleWindows-->
+	<search:CallerOneView x="10"
+						  y="46"/>
+	<search:CallerTwoView x="10"
+						  y="216"/>
+	<search:CallerThreeView x="10"
+							y="355"/>
+	<search:CallerFourView x="10"
+						   y="504"/>
+	<search:CallerFiveView x="10" y="637"/>
+	<!--explanations  -->
+	<s:TextArea y="46"
+				x="532"
+				width="550">
+		<s:text>
+			<![CDATA[POP 1 (popup creation in Mediator)
+1. search1 Button click ->CallerOneMediator->SearchDataCommandOne->SearchOneProxy
+2. SearchOneProxy-> CallerOneMediator ( creates PopUpWindow and PopUpOneMediator )
+3. CallerOneMediator sends the results from proxy to the PopUpOneMediator
+(dispatch(new SearchEventOne(SearchEventOne.SHOW_RESULT, sResult)); )
+4. PopUpOneMediator writes the results in the PopUpOneView
+5. Clicking the results in the PopOneView -> CallerOneMediator->
+writes selectedItem-data in the CallerOneView(search result) and removes the PopUpOneMediator]]>
+		</s:text>
+	</s:TextArea>
+	<s:TextArea y="216"
+				x="532"
+				width="550" height="112">
+		<s:text>
+			<![CDATA[POP 2 (popup creation in Command)
+1. search2 Button click ->CallerTwoMediator-> SearchDataCommandTwo-> SearchTwoProxy
+2. SearchTwoProxy-> CallerTwoMediator ->
+dispatch(new PopUpEvent(PopUpEvent.OPEN_POPUP, sResult, PopUpTwoView)); )
+3. OpenPopUpCommand creates the PopUp and its PopUpTwoMediator and passes the sResult(from Proxy) to the PopUpTwoView
+4. In this example the CallerTwoMediator makes the service call]]>
+		</s:text>
+	</s:TextArea>
+	<s:TextArea y="355"
+				x="532"
+				width="550" height="112">
+		<s:text>
+			<![CDATA[POP 3 (popup creation in Command, service call from popup-mediator)
+1. search3 Button click -> CallerThreeMediator 
+2. dispatch(new PopUpEvent(PopUpEvent.OPEN_POPUP, searchKeyword, PopUpThreeView));
+3. OpenPopUpCommand creates the PopUp and its PopUpThreeMediator and passes the searchKeyword to the PopUpTwoView
+4. PopUpThreeMediator reads the searchKeyword from the PopUpThreeView
+5. PopUpThreeMediator -> SearchDataCommandThree -> SearchThreeProxy
+6. SearchThreeProxy-> PopUpThreeMediator-> PopUpThreeView
+7. Click on ‘next page’ simulates calling the services for the next results in a paginated DataGrid
+8. In this example the PopUpThreeMediator makes the service call]]>
+		</s:text>
+	</s:TextArea>
+	<s:TextArea y="504"
+				x="532"
+				width="550" height="114">
+		<s:text>
+			<![CDATA[POP 4 (popup creation from Proxy!!)]]>
+		</s:text>
+	</s:TextArea>
+	<s:Label x="330"
+			 y="8"
+			 text="5 ways to work with PopUps+Services using RobotLegs"
+			 fontSize="12"
+			 color="#878BA0"
+			 fontWeight="bold"/>
+	<s:Label text="Introducing RobotLegs noodled."
+			 id="introTitle"
+			 bottom="0"
+			 horizontalCenter="0"/>
+	<s:TextArea y="637"
+				x="532"
+				width="550" height="114">
+		<s:text>
+			<![CDATA[POP 5 (popup creation in Command)
+using a Model to transport data to and from the Proxy]]>
+		</s:text>
+	</s:TextArea>	
+</s:Group>
