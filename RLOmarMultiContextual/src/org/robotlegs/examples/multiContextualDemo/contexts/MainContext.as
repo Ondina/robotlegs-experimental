@@ -1,13 +1,13 @@
 package org.robotlegs.examples.multiContextualDemo.contexts
 {
 	import flash.display.DisplayObjectContainer;
-	
+
 	import org.robotlegs.examples.multiContextualDemo.controllers.SwitchContextCommand;
 	import org.robotlegs.examples.multiContextualDemo.events.ModulesEvent;
 	import org.robotlegs.examples.multiContextualDemo.mediators.MainViewMediator;
 	import org.robotlegs.mvcs.Context;
 
- 
+
 	/**
 	 * @author omarfouad - modified by @_ondina
 	 *
@@ -49,21 +49,24 @@ package org.robotlegs.examples.multiContextualDemo.contexts
 		public static function switchContext(context:String, replaceModule:Boolean=true):void
 		{
 			trace("switchContext " + context);
-			if (replaceModule)
-				cleanUp(moduleToRemove);
-
-			switch (context)
+			if (context != null && context != moduleToRemove)
 			{
-				case "ModuleOne":
-					currentContext=new ModuleOneContext(contextHolder);
-					mainContext.dispatchEvent(new ModulesEvent(ModulesEvent.LOAD_MODULES, context));
-					break;
-				case "ModuleTwo":
-					currentContext=new ModuleTwoContext(contextHolder);
-					mainContext.dispatchEvent(new ModulesEvent(ModulesEvent.LOAD_MODULES, context));
-					break;
+				if (replaceModule && moduleToRemove != null && moduleToRemove != "Home")
+					cleanUp(moduleToRemove);
+
+				switch (context)
+				{
+					case "ModuleOne":
+						currentContext=new ModuleOneContext(contextHolder);
+						mainContext.dispatchEvent(new ModulesEvent(ModulesEvent.LOAD_MODULES, context));
+						break;
+					case "ModuleTwo":
+						currentContext=new ModuleTwoContext(contextHolder);
+						mainContext.dispatchEvent(new ModulesEvent(ModulesEvent.LOAD_MODULES, context));
+						break;
+				}
+				moduleToRemove=context;
 			}
-			moduleToRemove=context;
 		}
 
 		/**
@@ -72,8 +75,7 @@ package org.robotlegs.examples.multiContextualDemo.contexts
 		private static function cleanUp(module:String):void
 		{
 			trace("cleanUp " + module)
-			if (module != null)
-				mainContext.dispatchEvent(new ModulesEvent(ModulesEvent.UNLOAD_MODULES, module));
+			mainContext.dispatchEvent(new ModulesEvent(ModulesEvent.UNLOAD_MODULES, module));
 		}
 	}
 }
